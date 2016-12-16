@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MvcApplication1.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+
+<div class="container">
+
+    <div class="women-product">
+        @foreach (var item in Model)
+    {
+
+
+    <div class="product-grid">
+        <div class="content_box">
+            @*<a href="">*@
+
+            @*@Html.ActionLink(item.Name, "ProductDetails", "Shopping", new { ProductID = 1 }, "");*@
+
+            <a href="/Shopping/ProductDetails?ProductID=@item.ProductID">
+                <div class="left-grid-view grid-view-left">
+                    <img src="~/Assets/images/@item.ImagePath" class="img-responsive watch-right" alt="" />
+                    <div class="mask">
+                        <div class="info">Quick View</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <h4><a href="#">@item.Name</a></h4>
+        <p>@item.Details</p>
+        $@item.Price
+    </div>
+
+
+    <div class="clearfix" style="clear:both"> </div>
+    }
+
+    </div>
+
+
+		

@@ -1,0 +1,122 @@
+﻿ 
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   }
+
+
+<style>
+    table {
+        color: #333; /* Lighten up font color */
+        font-family: Helvetica, Arial, sans-serif; /* Nicer font */
+        width: 640px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    td, th {
+        border: 1px solid #CCC;
+        height: 30px;
+    }
+    /* Make cells a bit taller */
+
+    th {
+        background: #F3F3F3; /* Light grey background */
+        font-weight: bold; /* Make sure they're bold */
+    }
+
+    td {
+        background: #FAFAFA; /* Lighter grey background */
+        text-align: center; /* Center our text */
+    }
+</style>
+
+
+<div class="container">
+    <div class="main">
+
+        @{var rst = Session["Result"] ; ;
+            
+            List<MvcApplication1.Models.MyCart> mycart = (List<MvcApplication1.Models.MyCart>)rst;}
+
+
+  
+    <fieldset>
+
+        <legend>Add Address</legend>
+
+
+        <table>
+    <tr>
+        <th>
+            @Html.DisplayName("Quantity")
+
+        </th>
+        <th>
+            @Html.DisplayName("Image")
+
+        </th>
+        <th>
+            @Html.DisplayName("Name")
+
+        </th>
+
+        <th>
+            <span style="float:right"> @Html.DisplayName("Total Price") </span>
+
+        </th>
+        <th></th>
+    </tr>
+            @{ int ToatalPayment = 0; }
+    @foreach (var item in mycart)
+    {
+        <tr>
+            <td>
+                <span> @item.ProductQnt </span>
+            </td>
+            <td>
+                <img src="~/Assets/Images/@item.ProductImage " style="width:50px" />
+            </td>
+            <td>
+                <span> @item.ProductName </span>
+
+                @{ToatalPayment = ToatalPayment + (int)item.TotalPrice;}
+            </td>
+            <td>
+                <span style="float: right; margin-right: 10px">$ <span> @item.TotalPrice </span> </span>
+            </td>
+            <td></td>
+        </tr>
+    }
+
+    <td colspan="3">
+        <span style="float:right; margin-right:10px"> <strong> Toat Payment</strong> </span>
+    </td>
+    <td colspan="2">
+
+        <span style="float:left; margin-left:10px"> <b> $ @ToatalPayment </b> </span>
+    </td>
+
+    </tr>
+
+    
+    </table>
+
+        <hr />
+        <br />
+            <legend>Add Address</legend>
+@using (Html.BeginForm())
+{
+    
+    @Html.TextArea("Address")
+    
+    <br />
+    <br />
+    <input type="submit" value="Conform Order" class="btn btn-success pull-right" />
+
+}
+   
+
+</fieldset>
+
+     </div>

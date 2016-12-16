@@ -1,0 +1,73 @@
+﻿@model MvcApplication1.Models.Product
+
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="container">
+  
+    @using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Product</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CategoryID)
+            </div>
+            <div class="editor-field">
+                @*@Html.EditorFor(model => model.CategoryID)
+                @Html.ValidationMessageFor(model => model.CategoryID)*@
+
+                @Html.DropDownList("CategoryID", Model.CategoryList)
+
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Details)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Details)
+                @Html.ValidationMessageFor(model => model.Details)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Price)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ImagePath)
+            </div>
+            <div class="editor-field">
+                @*@Html.EditorFor(model => model.ImagePath)
+                @Html.ValidationMessageFor(model => model.ImagePath)*@
+                <input type="file" name="file" accept="image/x-png,image/gif,image/jpeg" />
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+  

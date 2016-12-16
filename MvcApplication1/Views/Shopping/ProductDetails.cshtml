@@ -1,0 +1,135 @@
+﻿@model MvcApplication1.Models.Product
+
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@*<fieldset>
+        <legend>Product</legend>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.CategoryID)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.CategoryID)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Name)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Details)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Details)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.Price)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Price)
+        </div>
+
+        <div class="display-label">
+             @Html.DisplayNameFor(model => model.ImagePath)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.ImagePath)
+        </div>
+    </fieldset>*@
+<div class="container">
+
+    <div class=" single_top">
+        <div class="single_grid">
+            <div class="grid images_3_of_2">
+                <ul id="etalage" class="etalage" style="display: block; width: 302px; height: 535px;">
+                    <li class="etalage_thumb thumb_1 etalage_thumb_active" style="display: list-item; background-image: none; opacity: 1;">
+                        <a href="#">
+                            <img class="etalage_thumb_image" src="~/Assets/images/@Model.ImagePath" style="display: inline; width: 300px; height: 400px; opacity: 1;">
+                            <img class="etalage_source_image" src="~/Assets/images/@Model.ImagePath" title="">
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="desc1 span_3_of_2">
+
+
+                <h4>@Model.Name</h4>
+                <div class="cart-b">
+                    <div class="left-n ">$@Model.Price</div>
+                                        @using (Html.BeginForm("AddtoCart", "Shopping", FormMethod.Post))
+                    {
+                        //@Html.EditorFor(model => model.Quantity,)
+                        <label style="margin-left:10px;margin-top:5px;">Quantity:</label>
+                                            <input type="number" name="Quantity" maxlength="2" max="3" min="1" style="margin:5px">
+
+    <input type="hidden" value="@Model.ProductID" name="ProductID" />
+    <input type="hidden" value="@Model.Price" name="Price" />
+    <input type="submit" value="ADD TO CART" class="now-get get-cart-in btn-info" />
+
+                    }
+                    @*<a class="now-get get-cart-in" href="#">ADD TO CART</a>*@
+                    <div class="clearfix"></div>
+                </div>
+                @{Random rnum = new Random(); }
+                <h6>@rnum.Next(3, 10) items in stock</h6>
+                <p>@Model.Details</p>
+                <div class="share">
+                    <h5>Share Product :</h5>
+                    <ul class="share_nav">
+                        <li><a href="#"><img src="~/Assets/images/facebook.png" title="facebook"></a></li>
+                        <li><a href="#"><img src="~/Assets/images/twitter.png" title="Twiiter"></a></li>
+                        <li><a href="#"><img src="~/Assets/images/rss.png" title="Rss"></a></li>
+                        <li><a href="#"><img src="~/Assets/images/gpluse.png" title="Google+"></a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+        <script type="text/javascript">
+            $(window).load(function () {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 5,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+
+            });
+        </script>
+        <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+
+        <div class="toogle">
+            <h3 class="m_3">Product Details</h3>
+            <p class="m_text">@Model.Details</p>
+        </div>
+    </div>

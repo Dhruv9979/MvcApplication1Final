@@ -1,0 +1,122 @@
+﻿@model IEnumerable<MvcApplication1.Models.MyCart>
+
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+    table {
+        color: #333; /* Lighten up font color */
+        font-family: Helvetica, Arial, sans-serif; /* Nicer font */
+        width: 640px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    td, th {
+        border: 1px solid #CCC;
+        height: 30px;
+    }
+    /* Make cells a bit taller */
+
+    th {
+        background: #F3F3F3; /* Light grey background */
+        font-weight: bold; /* Make sure they're bold */
+    }
+
+    td {
+        background: #FAFAFA; /* Lighter grey background */
+        text-align: center; /* Center our text */
+    }
+</style>
+
+<div class="container">
+
+    <div class="main">
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayName("Quantity")
+
+                </th>
+                <th>
+                    @Html.DisplayName("Image")
+
+                </th>
+                <th>
+                    @Html.DisplayName("Name")
+
+                </th>
+
+                <th>
+                    <span style="float:right"> @Html.DisplayName("Total Price") </span>
+
+                </th>
+                <th></th>
+            </tr>
+            @{ int ToatalPayment = 0; }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductQnt)
+                    </td>
+                    <td>
+                        <img src="~/Assets/Images/@item.ProductImage " style="width:50px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                        @{ToatalPayment = ToatalPayment + (int)item.TotalPrice;}
+                    </td>
+                    <td>
+                        <span style="float: right; margin-right: 10px">$@Html.DisplayFor(modelItem => item.TotalPrice)</span>
+</td>
+                    <td>
+                          @Html.ActionLink("Edit", "EditCart", new { id = item.CartID })
+                          @Html.ActionLink("Delete", "DeleteCart", new { id = item.CartID })
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td colspan="3">
+                    <span style="float:right; margin-right:10px"> <strong> Toat Payment</strong> </span>
+</td>
+                <td colspan="2">
+
+                    <span style="float:left; margin-left:10px"> <b> $ @ToatalPayment </b> </span>
+</td>
+
+            </tr>
+
+
+
+           
+        </table>
+
+        <hr />
+
+        <table>
+
+            <tr>
+                <td colspan="3">
+                    <span style="float:right; margin-right:10px"> <strong></strong> </span>
+                </td>
+                <td colspan="2">
+                    @if (ToatalPayment > 0) { 
+                    <div style="float:left; margin-left:10px" class="pull-right" > <b> @Html.ActionLink("Process To Checkuot", "Checkout", "Shopping", new { @class = "btn btn-success pull-right" }) </b> </div>
+                    }
+                    else
+                    { 
+                     <span> Your  cart is  empty please add product in your cart </span>
+                    }
+                </td>
+
+            </tr>
+        </table>
+
+        </div>

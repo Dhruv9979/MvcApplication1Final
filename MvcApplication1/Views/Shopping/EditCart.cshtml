@@ -1,0 +1,74 @@
+﻿@model MvcApplication1.Models.MyCart
+
+@{
+    ViewBag.Title = "EditCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="main">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>MyCart</legend>
+
+                @*<div class="editor-label">
+                    @Html.LabelFor(model => model.CartID)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CartID)
+                    @Html.ValidationMessageFor(model => model.CartID)
+                </div>*@
+
+                @Html.HiddenFor(model => model.CartID)
+                
+                @{ int unitprice = (int)Model.TotalPrice / (int)Model.ProductQnt;}
+
+                <input type="hidden" value="@unitprice" name="UnitPrice" />
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ProductName)
+                </div>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.ProductName)
+                    @Html.ValidationMessageFor(model => model.ProductName)
+                </div>
+
+                <div class="editor-label" style="display:none">
+                    @Html.LabelFor(model => model.ProductImage)
+                </div>
+                <div class="editor-field" style="display:none">
+                    @Html.DisplayFor(model => model.ProductImage)
+                    @Html.ValidationMessageFor(model => model.ProductImage)
+                </div>
+
+                <div class="editor-label" >
+                    @Html.LabelFor(model => model.ProductQnt)
+                </div>
+                <div class="editor-field">
+                    @*@Html.EditorFor(model => model.ProductQnt)*@
+                    @*@Html.ValidationMessageFor(model => model.ProductQnt)*@
+
+                    <input type="number" name="ProductQnt" min="1" max="3" value="@Model.ProductQnt" />
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.TotalPrice)
+                </div>
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.TotalPrice)
+                    @Html.ValidationMessageFor(model => model.TotalPrice)
+                </div>
+
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>
+        }
+
+     </div>
+     

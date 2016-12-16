@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MvcApplication1.Models.Category>
+
+<ul class="menu">
+    
+    <li class="item1">
+        </li>
+    <ul class="kid-menu ">
+        @*@Html.ActionLink("Test", "Products", "Shopping", new {ProductID="1" })*@
+
+        @foreach (var item in Model)
+{
+
+    <li class="menu-kid-left">
+        @*<a href="/Shopping/Products/@item.CategoryID" >@item.Name</a>*@
+
+        @Html.ActionLink(item.Name, "Products", "Shopping", new { ProductID = item.CategoryID }, "")
+    </li>
+}
+        <li class="menu-kid-left">
+            @Html.ActionLink("About Me", "Aboutus", "Home")
+
+        </li>
+        <li class="menu-kid-left">
+            @Html.ActionLink("Contact us ", "Contactus", "Home")
+
+        </li>
+    </ul>
+</ul>
