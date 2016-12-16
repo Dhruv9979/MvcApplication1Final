@@ -8,31 +8,31 @@
 
 
 <div class="container">
-   
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+    <div class="main">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
-        <fieldset>
-            <legend>Category</legend>
+            <fieldset>
+                <legend>Category</legend>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Name)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
 
-            <p>
-                <input type="submit" value="Create" />
-            </p>
-        </fieldset>
-    }
+                <p>
+                    <input type="submit" value="Create" />
+                </p>
+            </fieldset>
+        }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
 
-  
+        </div>
